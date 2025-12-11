@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${jetBrainMono.variable} antialiased`}>
-        <main className=' bg-zinc-900'>
+        <main>
           <Header />
           <div className='w-6xl mx-auto'>{children}</div>
           <footer>footer here</footer>

@@ -34,3 +34,7 @@ body {
 .link-underline {
   @apply block h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full;
 }
+
+.focus-ring {
+  @apply focus-visible:ring-2 focus-visible:ring-primary/60 rounded-sm focus-visible:outline-none;
+}
