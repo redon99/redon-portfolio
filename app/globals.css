@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #11ce91;
 }
 
 @theme inline {
@@ -10,6 +11,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +25,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-jetbrains-mono);
+}
+
+.link-transition {
+  @apply transition-all duration-200;
+}
+
+.link-underline {
+  @apply block h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full;
 }

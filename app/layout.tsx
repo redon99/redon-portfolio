@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+import { Header } from './Header'
 
 const jetBrainMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
@@ -19,12 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body
-        className={`${jetBrainMono.variable} antialiased max-w-7xl text-center mx-auto`}
-      >
-        <header>header here</header>
-        {children}
-        <footer>footer here</footer>
+      <body className={`${jetBrainMono.variable} antialiased`}>
+        <main className=' bg-zinc-900'>
+          <Header />
+          <div className='w-6xl mx-auto'>{children}</div>
+          <footer>footer here</footer>
+        </main>
       </body>
     </html>
   )
