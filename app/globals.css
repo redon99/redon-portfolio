@@ -27,6 +27,11 @@ body {
   font-family: var(--font-jetbrains-mono);
 }
 
+::selection {
+  background-color: var(--primary);
+  color: var(--background);
+}
+
 .link-transition {
   @apply transition-all duration-200;
 }
