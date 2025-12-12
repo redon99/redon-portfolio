@@ -1,0 +1,65 @@
+import { Facebook, GithubIcon, Linkedin } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+
+const SOCIAL_LINKS = [
+  {
+    name: 'linkedin',
+    url: 'https://www.linkedin.com/in/redon-lutolli/',
+    icon: <Linkedin />,
+  },
+  {
+    name: 'github',
+    url: 'https://www.github.com/redon99',
+    icon: <GithubIcon />,
+  },
+  {
+    name: 'facebook',
+    url: 'https://www.facebook.com/redonlu',
+    icon: <Facebook />,
+  },
+]
+
+export const Footer = () => {
+  return (
+    <footer className='w-full mx-auto mt-12 border-primary border-t pt-4 px-80'>
+      <div className='flex items-center gap-4 mb-4'>
+        <Image
+          src='/redon-profile.jpg'
+          alt='Redon Lutolli profile pic'
+          width={48}
+          height={48}
+          objectFit='cover'
+          className='rounded-full'
+        />
+        <div>
+          <h4 className='text-primary font-bold text-lg'>Redon Lutolli</h4>
+          <p className='text-primary opacity-50'>Software Engineer</p>
+        </div>
+      </div>
+      <div className='text-sm w-[250px]'>
+        <p className='mb-2'>
+          <strong className='text-primary'>redon@linuxpc:~$ </strong>
+          social ls
+        </p>
+
+        <ul className='flex items-center gap-4'>
+          {SOCIAL_LINKS.map(link => (
+            <li key={link.name}>
+              <Link
+                href={link.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='hover:text-primary link-transition'
+              >
+                {link.icon}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <p className='mt-6 opacity-50'>made with /~.zsh</p>
+      </div>
+    </footer>
+  )
+}

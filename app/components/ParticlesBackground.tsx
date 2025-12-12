@@ -67,10 +67,10 @@ export const ParticlesBackground = () => {
         },
         move: {
           enable: true,
-          speed: 2,
+          speed: 1.5,
         },
         number: {
-          value: 150,
+          value: 200,
           density: {
             enable: true,
           },
