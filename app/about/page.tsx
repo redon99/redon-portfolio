@@ -1,5 +1,72 @@
+import { TerminalQuery } from '../components/TerminalQuery'
+import {
+  SiJavascript,
+  SiTypescript,
+  SiNodedotjs,
+  SiReact,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiPython,
+  SiDocker,
+  SiMysql,
+  SiAwslambda,
+  SiKubernetes,
+  SiDatabricks,
+  SiTailwindcss,
+} from 'react-icons/si'
+
+const SKILLS = [
+  { name: 'JavaScript', icon: SiJavascript },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'React.js', icon: SiReact },
+  { name: 'Next.js', icon: SiNextdotjs },
+  { name: 'Vue.js', icon: SiVuedotjs },
+  { name: 'Python', icon: SiPython },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'Kubernetes', icon: SiKubernetes },
+  { name: 'SQL', icon: SiMysql },
+  { name: 'AWS', icon: SiAwslambda },
+  { name: 'Database', icon: SiDatabricks },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
+]
+
 function Index() {
-  return <div>Index about</div>
+  return (
+    <div className='w-5xl mx-auto h-[600px] py-4'>
+      <TerminalQuery query='whoami' />
+      <p className='text-md font-light mb-10'>
+        👋 Hi there! I'm Redon, a full-stack software engineer based on
+        Prishtina, Kosovo.
+      </p>
+      <TerminalQuery query='cat about_me.txt' />
+      <p className='text-md font-light mb-10'>
+        I have almost 3 years of experience in building web applications using
+        Next.js, React.js, Node.js and other modern technologies. While I love
+        UIs I also enjoy working on backend systems and databases.
+      </p>
+      <TerminalQuery query='ls skills' />
+      <div className='my-4'>
+        <ul className='flex gap-6 flex-wrap'>
+          {SKILLS.map(skill => (
+            <li key={skill.name} className='flex items-center gap-2 mb-2'>
+              <skill.icon className='text-2xl' />
+              <span>{skill.name}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <TerminalQuery query='cat goals.txt' />
+      <p className='text-md font-light mb-10'>
+        Dive deeper into backend systems, cloud computing, machine learning.
+      </p>
+      <TerminalQuery query='ls hobbies' />
+      <p className='text-md font-light mb-10'>
+        Fitness🏋️‍♂️ Basketball🏀 Chess♟️ Reading📖 Exploring nature🌋
+      </p>
+      <TerminalQuery query='click here to download CV 👈' link />
+    </div>
+  )
 }
 
 export default Index
