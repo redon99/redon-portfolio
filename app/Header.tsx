@@ -11,34 +11,36 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   return (
-    <header className='w-full py-4 px-48 mx-auto border-b border-primary flex items-center justify-between'>
-      <Link
-        className='text-primary text-xl font-bold cursor-pointer hover:opacity-80 link-transition focus-ring'
-        href='/'
-      >
-        Redon LUTOLLI
-      </Link>
-
-      <ul className='flex gap-8 font-medium text-lg items-center'>
-        <button
-          onClick={() => console.log('click')}
-          className='cursor-pointer focus-visible:ring-2 focus-ring'
+    <div className='w-full border-primary border-b'>
+      <header className='w-7xl py-4 mx-auto flex items-center justify-between'>
+        <Link
+          className='text-primary text-xl font-bold cursor-pointer hover:opacity-80 link-transition focus-ring'
+          href='/'
         >
-          <Sun className='hover:text-primary link-transition focus-visible:outline-none' />
-        </button>
+          Redon LUTOLLI
+        </Link>
 
-        {NAV_ITEMS.map(item => (
-          <li key={item.name}>
-            <Link
-              href={item.href}
-              className='cursor-pointer group link-transition hover:text-primary focus-ring inline-block relative'
-            >
-              {item.name}
-              <span className='link-underline' />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </header>
+        <ul className='flex gap-8 font-medium text-lg items-center'>
+          <button
+            onClick={() => console.log('click')}
+            className='cursor-pointer focus-visible:ring-2 focus-ring'
+          >
+            <Sun className='hover:text-primary link-transition focus-visible:outline-none' />
+          </button>
+
+          {NAV_ITEMS.map(item => (
+            <li key={item.name}>
+              <Link
+                href={item.href}
+                className='cursor-pointer group link-transition hover:text-primary focus-ring inline-block relative'
+              >
+                {item.name}
+                <span className='link-underline' />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </header>
+    </div>
   )
 }
