@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`${jetBrainMono.variable} antialiased`}>
         <main>
           <Header />
-          <div className='w-6xl mx-auto'>{children}</div>
+          <div>{children}</div>
           <footer>footer here</footer>
         </main>
       </body>
