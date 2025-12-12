@@ -2,6 +2,13 @@
 import Link from 'next/link'
 import { Sun } from 'lucide-react'
 
+const NAV_ITEMS = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Projects', href: '/projects' },
+  { name: 'Contact', href: '/contact' },
+]
+
 export const Header = () => {
   return (
     <header className='w-full py-4 px-48 mx-auto border-b border-primary flex items-center justify-between'>
@@ -19,14 +26,16 @@ export const Header = () => {
         >
           <Sun className='hover:text-primary link-transition focus-visible:outline-none' />
         </button>
-        {['Home', 'About', 'Projects', 'Contact'].map(item => (
-          <li
-            key={item}
-            className='cursor-pointer group hover:text-primary link-transition focus-ring'
-            tabIndex={0}
-          >
-            {item}
-            <span className='link-underline' />
+
+        {NAV_ITEMS.map(item => (
+          <li key={item.name}>
+            <Link
+              href={item.href}
+              className='cursor-pointer group link-transition hover:text-primary focus-ring inline-block relative'
+            >
+              {item.name}
+              <span className='link-underline' />
+            </Link>
           </li>
         ))}
       </ul>
