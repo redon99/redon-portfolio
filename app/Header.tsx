@@ -37,7 +37,7 @@ export const Header = () => {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className={`cursor-pointer group link-transition inline-block relative ${
+                  className={`cursor-pointer group link-transition inline-block relative focus-ring ${
                     isActive ? 'text-primary font-bold' : 'hover:text-primary'
                   }`}
                 >
@@ -47,6 +47,13 @@ export const Header = () => {
               </li>
             )
           })}
+          <Link
+            href='/redonCV-2025.pdf'
+            className='bg-primary text-background px-4 rounded-md hover:scale-105 link-transition focus-ring ring-offset-2'
+            download='Redon_Lutolli_CV.pdf'
+          >
+            Download CV
+          </Link>
         </ul>
       </header>
     </div>

@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'portfolio',
-    name: 'Portfolio Website',
+    name: 'Portfolio Website 🚀',
     description:
       'Personal portfolio built with a terminal-inspired UI. (This one that you are looking at)',
     stack: ['Next.js', 'Tailwind', 'Framer Motion'],

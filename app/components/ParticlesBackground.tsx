@@ -34,7 +34,7 @@ export const ParticlesBackground = () => {
         events: {
           onHover: {
             enable: true,
-            mode: 'repulse',
+            mode: 'grab',
           },
           onClick: {
             enable: true,
@@ -44,7 +44,7 @@ export const ParticlesBackground = () => {
         },
         modes: {
           grab: {
-            distance: 200,
+            distance: 100,
             links: {
               opacity: 1,
             },
