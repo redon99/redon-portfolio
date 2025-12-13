@@ -1,4 +1,6 @@
+'use client'
 import { TerminalQuery } from '../components/TerminalQuery'
+import { motion } from 'motion/react'
 import {
   SiJavascript,
   SiTypescript,
@@ -31,40 +33,69 @@ const SKILLS = [
   { name: 'Tailwind CSS', icon: SiTailwindcss },
 ]
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+}
+
+const itemsVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
+
 function Index() {
   return (
     <div className='w-5xl mx-auto h-[600px] py-4'>
-      <TerminalQuery query='whoami' />
-      <p className='text-md font-light mb-10'>
-        👋 Hi there! I'm Redon, a full-stack software engineer based on
-        Prishtina, Kosovo.
-      </p>
-      <TerminalQuery query='cat about_me.txt' />
-      <p className='text-md font-light mb-10'>
-        I have almost 3 years of experience in building web applications using
-        Next.js, React.js, Node.js and other modern technologies. While I love
-        UIs I also enjoy working on backend systems and databases.
-      </p>
-      <TerminalQuery query='ls skills' />
-      <div className='my-4'>
-        <ul className='flex gap-6 flex-wrap'>
-          {SKILLS.map(skill => (
-            <li key={skill.name} className='flex items-center gap-2 mb-2'>
-              <skill.icon className='text-2xl' />
-              <span>{skill.name}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <TerminalQuery query='cat goals.txt' />
-      <p className='text-md font-light mb-10'>
-        Dive deeper into backend systems, cloud computing, machine learning.
-      </p>
-      <TerminalQuery query='ls hobbies' />
-      <p className='text-md font-light mb-10'>
-        Fitness🏋️‍♂️ Basketball🏀 Chess♟️ Reading📖 Exploring nature🌋
-      </p>
-      <TerminalQuery query='click here to download CV 👈' link />
+      <motion.div variants={containerVariants} initial='hidden' animate='show'>
+        <motion.div variants={itemsVariants}>
+          <TerminalQuery query='whoami' />
+          <p className='text-md font-light mb-10'>
+            👋 Hi there! I'm Redon, a full-stack software engineer based on
+            Prishtina, Kosovo.
+          </p>
+        </motion.div>
+        <motion.div variants={itemsVariants}>
+          <TerminalQuery query='cat about_me.txt' />
+          <p className='text-md font-light mb-10'>
+            I have almost 3 years of experience in building web applications
+            using Next.js, React.js, Node.js and other modern technologies.
+            While I love UIs I also enjoy working on backend systems and
+            databases.
+          </p>
+        </motion.div>
+        <motion.div variants={itemsVariants}>
+          <TerminalQuery query='skills ls' />
+          <div className='my-4'>
+            <ul className='flex gap-6 flex-wrap'>
+              {SKILLS.map(skill => (
+                <li key={skill.name} className='flex items-center gap-2 mb-2'>
+                  <skill.icon className='text-2xl' />
+                  <span>{skill.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+        <motion.div variants={itemsVariants}>
+          <TerminalQuery query='cat goals.txt' />
+          <p className='text-md font-light mb-10'>
+            Dive deeper into backend systems, cloud computing, machine learning.
+          </p>
+        </motion.div>
+        <motion.div variants={itemsVariants}>
+          <TerminalQuery query='hobbies ls' />
+          <p className='text-md font-light mb-10'>
+            Fitness🏋️‍♂️ Basketball🏀 Chess♟️ Reading📖 Exploring nature🌋
+          </p>
+        </motion.div>
+        <motion.div variants={itemsVariants}>
+          <TerminalQuery query='click here to download CV 👈' link />
+        </motion.div>
+      </motion.div>
     </div>
   )
 }
