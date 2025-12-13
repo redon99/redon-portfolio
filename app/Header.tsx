@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { Sun } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 const NAV_ITEMS = [
   { name: 'Home', href: '/' },
@@ -10,6 +11,8 @@ const NAV_ITEMS = [
 ]
 
 export const Header = () => {
+  const pathname = usePathname()
+
   return (
     <div className='w-full border-primary border-b'>
       <header className='w-7xl py-4 mx-auto flex items-center justify-between'>
@@ -28,17 +31,22 @@ export const Header = () => {
             <Sun className='hover:text-primary link-transition focus-visible:outline-none' />
           </button>
 
-          {NAV_ITEMS.map(item => (
-            <li key={item.name}>
-              <Link
-                href={item.href}
-                className='cursor-pointer group link-transition hover:text-primary focus-ring inline-block relative'
-              >
-                {item.name}
-                <span className='link-underline' />
-              </Link>
-            </li>
-          ))}
+          {NAV_ITEMS.map(item => {
+            const isActive = pathname === item.href
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  className={`cursor-pointer group link-transition inline-block relative ${
+                    isActive ? 'text-primary font-bold' : 'hover:text-primary'
+                  }`}
+                >
+                  {item.name}
+                  <span className='link-underline' />
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </header>
     </div>
