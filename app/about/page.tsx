@@ -68,7 +68,7 @@ function Index() {
           </p>
         </motion.div>
         <motion.div variants={itemsVariants}>
-          <TerminalQuery query='skills ls' />
+          <TerminalQuery query='skills ls --icons' />
           <div className='my-4'>
             <ul className='flex gap-6 flex-wrap'>
               {SKILLS.map(skill => (
@@ -84,6 +84,7 @@ function Index() {
           <TerminalQuery query='cat goals.txt' />
           <p className='text-md font-light mb-10'>
             Dive deeper into backend systems, cloud computing, machine learning.
+            Why not architecting scalable frontends too!
           </p>
         </motion.div>
         <motion.div variants={itemsVariants}>
