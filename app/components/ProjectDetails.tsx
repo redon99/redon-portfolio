@@ -40,7 +40,7 @@ export const ProjectDetails = ({ project }: P) => {
           {project.links.live && (
             <Link
               href={project.links.live}
-              className='hover:text-primary link-transition ml-4'
+              className='hover:text-primary link-transition ml-4 focus-ring'
               target='_blank'
             >
               [Live]
@@ -49,7 +49,7 @@ export const ProjectDetails = ({ project }: P) => {
           {project.links.github && (
             <Link
               href={project.links.github}
-              className='hover:text-primary link-transition ml-4'
+              className='hover:text-primary link-transition ml-4 focus-ring'
               target='_blank'
             >
               [Github]

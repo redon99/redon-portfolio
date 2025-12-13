@@ -23,10 +23,20 @@ function Index() {
         {PROJECTS.map(project => (
           <li key={project.id}>
             <div
-              className='cursor-pointer hover:text-primary link-transition'
+              role='button'
+              tabIndex={0}
+              className={`inline-flex items-center cursor-pointer hover:text-primary link-transition focus-ring ${
+                openProject === project.id && 'text-primary'
+              }`}
               onClick={() =>
                 setOpenProject(openProject === project.id ? null : project.id)
               }
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setOpenProject(openProject === project.id ? null : project.id)
+                }
+              }}
             >
               <span
                 className={`inline-block transition-transform duration-200 mr-4 ${
@@ -42,6 +52,11 @@ function Index() {
           </li>
         ))}
       </ul>
+      {!openProject && (
+        <p className='sticky bottom-0 mt-4 py-2 text-sm opacity-60 bg-background'>
+          More cool projects SOON!
+        </p>
+      )}
     </section>
   )
 }
