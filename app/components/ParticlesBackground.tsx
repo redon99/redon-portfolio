@@ -34,7 +34,7 @@ export const ParticlesBackground = () => {
         events: {
           onHover: {
             enable: true,
-            mode: 'grab',
+            mode: 'repulse',
           },
           onClick: {
             enable: true,
@@ -50,7 +50,7 @@ export const ParticlesBackground = () => {
             },
           },
           repulse: {
-            distance: 200,
+            distance: 100,
           },
         },
       },
@@ -60,17 +60,17 @@ export const ParticlesBackground = () => {
         },
         links: {
           color: '#11ce91',
-          distance: 150,
+          distance: 100,
           enable: true,
           opacity: 0.5,
           width: 1,
         },
         move: {
           enable: true,
-          speed: 1.5,
+          speed: 0.7,
         },
         number: {
-          value: 200,
+          value: 700,
           density: {
             enable: true,
           },
@@ -82,7 +82,7 @@ export const ParticlesBackground = () => {
           type: 'circle',
         },
         size: {
-          value: { min: 1, max: 3 },
+          value: { min: 0.5, max: 1 },
         },
       },
       detectRetina: true,
