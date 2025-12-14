@@ -25,6 +25,11 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-jetbrains-mono);
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 h2 {
@@ -53,7 +58,7 @@ h2 {
 }
 
 .button {
-  @apply bg-primary text-background px-4 rounded-md hover:scale-105 ring-offset-2 cursor-pointer;
+  @apply bg-primary text-background px-4 rounded-md hover:scale-105 ring-offset-2 cursor-pointer transition-transform duration-200 active:scale-95;
 }
 
 @keyframes caret {

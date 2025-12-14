@@ -49,54 +49,63 @@ const itemsVariants = {
 
 function Index() {
   return (
-    <div className='w-5xl mx-auto h-[600px]'>
-      <motion.div variants={containerVariants} initial='hidden' animate='show'>
-        <motion.div variants={itemsVariants} className='pt-2'>
-          <TerminalQuery query='whoami' />
-          <p className='text-md font-light mb-10'>
-            👋 Hi there! I'm Redon, a full-stack software engineer based on
-            Prishtina, Kosovo.
-          </p>
+    <div className='w-full flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 overflow-x-hidden'>
+      <div className='w-full max-w-5xl mx-auto'>
+        <motion.div
+          variants={containerVariants}
+          initial='hidden'
+          animate='show'
+        >
+          <motion.div variants={itemsVariants} className='pt-2'>
+            <TerminalQuery query='whoami' />
+            <p className='text-sm sm:text-base md:text-md font-light mb-6 sm:mb-10 break-words'>
+              👋 Hi there! I'm Redon, a full-stack software engineer based on
+              Prishtina, Kosovo.
+            </p>
+          </motion.div>
+          <motion.div variants={itemsVariants}>
+            <TerminalQuery query='cat about_me.txt' />
+            <p className='text-sm sm:text-base md:text-md font-light mb-6 sm:mb-10 break-words'>
+              I have almost 3 years of experience in building web applications
+              using Next.js, React.js, Node.js and other modern technologies.
+              While I love UIs I also enjoy working on backend systems and
+              databases.
+            </p>
+          </motion.div>
+          <motion.div variants={itemsVariants}>
+            <TerminalQuery query='skills ls --icons' />
+            <div className='my-4 overflow-x-hidden'>
+              <ul className='flex gap-4 sm:gap-6 flex-wrap'>
+                {SKILLS.map(skill => (
+                  <li
+                    key={skill.name}
+                    className='flex items-center gap-2 mb-2 break-words'
+                  >
+                    <skill.icon className='text-xl sm:text-2xl flex-shrink-0' />
+                    <span className='text-sm sm:text-base'>{skill.name}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+          <motion.div variants={itemsVariants}>
+            <TerminalQuery query='cat goals.txt' />
+            <p className='text-sm sm:text-base md:text-md font-light mb-6 sm:mb-10 break-words'>
+              Dive deeper into backend systems, cloud computing, machine
+              learning. Why not architecting scalable frontends too!
+            </p>
+          </motion.div>
+          <motion.div variants={itemsVariants}>
+            <TerminalQuery query='hobbies ls' />
+            <p className='text-sm sm:text-base md:text-md font-light mb-6 sm:mb-10 break-words'>
+              Fitness🏋️‍♂️ Basketball🏀 Chess♟️ Reading📖 Exploring nature🌋
+            </p>
+          </motion.div>
+          <motion.div variants={itemsVariants}>
+            <TerminalQuery query='click here to download CV 👈' link />
+          </motion.div>
         </motion.div>
-        <motion.div variants={itemsVariants}>
-          <TerminalQuery query='cat about_me.txt' />
-          <p className='text-md font-light mb-10'>
-            I have almost 3 years of experience in building web applications
-            using Next.js, React.js, Node.js and other modern technologies.
-            While I love UIs I also enjoy working on backend systems and
-            databases.
-          </p>
-        </motion.div>
-        <motion.div variants={itemsVariants}>
-          <TerminalQuery query='skills ls --icons' />
-          <div className='my-4'>
-            <ul className='flex gap-6 flex-wrap'>
-              {SKILLS.map(skill => (
-                <li key={skill.name} className='flex items-center gap-2 mb-2'>
-                  <skill.icon className='text-2xl' />
-                  <span>{skill.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </motion.div>
-        <motion.div variants={itemsVariants}>
-          <TerminalQuery query='cat goals.txt' />
-          <p className='text-md font-light mb-10'>
-            Dive deeper into backend systems, cloud computing, machine learning.
-            Why not architecting scalable frontends too!
-          </p>
-        </motion.div>
-        <motion.div variants={itemsVariants}>
-          <TerminalQuery query='hobbies ls' />
-          <p className='text-md font-light mb-10'>
-            Fitness🏋️‍♂️ Basketball🏀 Chess♟️ Reading📖 Exploring nature🌋
-          </p>
-        </motion.div>
-        <motion.div variants={itemsVariants}>
-          <TerminalQuery query='click here to download CV 👈' link />
-        </motion.div>
-      </motion.div>
+      </div>
     </div>
   )
 }

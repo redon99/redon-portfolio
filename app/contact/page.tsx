@@ -61,66 +61,73 @@ function Index() {
   }
 
   return (
-    <div className='w-5xl mx-auto h-[600px]'>
-      <h2>Let's talk 😎</h2>
-      <p className='mb-6 text-sm opacity-70'>
-        I usually reply withing 24 hours.
-      </p>
+    <div className='w-full flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12'>
+      <div className='w-full max-w-5xl mx-auto'>
+        <h2 className='text-2xl sm:text-3xl md:text-4xl'>Let's talk 😎</h2>
+        <p className='mb-6 text-xs sm:text-sm opacity-70'>
+          I usually reply withing 24 hours.
+        </p>
 
-      <form
-        action='https://formspree.io/f/myzrvdyv'
-        method='POST'
-        onSubmit={handleSubmit}
-        className='space-y-4'
-      >
-        <input type='text' name='_gotcha' className='hidden' />
-        <FormField label='name'>
-          <input
-            name='name'
-            className='form-input focus-ring'
-            placeholder='Your name'
-          />
-          {errors.name && (
-            <p className='mt-1 text-xs text-red-500'>{errors.name}</p>
+        <form
+          action='https://formspree.io/f/myzrvdyv'
+          method='POST'
+          onSubmit={handleSubmit}
+          className='space-y-4 sm:space-y-5 max-w-2xl'
+        >
+          <input type='text' name='_gotcha' className='hidden' />
+          <FormField label='name'>
+            <input
+              name='name'
+              className='form-input focus-ring text-sm sm:text-base'
+              placeholder='Your name'
+            />
+            {errors.name && (
+              <p className='mt-1 text-xs text-red-500'>{errors.name}</p>
+            )}
+          </FormField>
+          <FormField label='email'>
+            <input
+              name='email'
+              type='email'
+              required
+              className={`form-input focus-ring text-sm sm:text-base ${
+                errors.name ? 'border-red-500/60' : ''
+              }`}
+              placeholder='Your email'
+            />
+          </FormField>
+          <FormField label='message'>
+            <textarea
+              name='message'
+              rows={5}
+              className='form-input focus-ring resize-none text-sm sm:text-base'
+              placeholder='Write something...'
+            />
+            {errors.message && (
+              <p className='mt-1 text-xs text-red-500'>{errors.message}</p>
+            )}
+          </FormField>
+
+          <button
+            type='submit'
+            className='button focus-ring link-transition text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3'
+          >
+            Send message
+          </button>
+
+          {status === 'success' && (
+            <p className='text-xs sm:text-sm text-primary'>
+              Message sent successfully!
+            </p>
           )}
-        </FormField>
-        <FormField label='email'>
-          <input
-            name='email'
-            type='email'
-            required
-            className={`form-input focus-ring ${
-              errors.name ? 'border-red-500/60' : ''
-            }`}
-            placeholder='Your email'
-          />
-        </FormField>
-        <FormField label='message'>
-          <textarea
-            name='message'
-            rows={5}
-            className='form-input focus-ring resize-none'
-            placeholder='Write something...'
-          />
-          {errors.message && (
-            <p className='mt-1 text-xs text-red-500'>{errors.message}</p>
+
+          {status === 'error' && (
+            <p className='text-xs sm:text-sm text-red-500'>
+              Something went wrong. Try again please!
+            </p>
           )}
-        </FormField>
-
-        <button type='submit' className='button focus-ring link-transition'>
-          Send message
-        </button>
-
-        {status === 'success' && (
-          <p className='text-xs text-primary'>Message sent successfully!</p>
-        )}
-
-        {status === 'error' && (
-          <p className='text-xs text-red-500'>
-            Something went wrong. Try again please!
-          </p>
-        )}
-      </form>
+        </form>
+      </div>
     </div>
   )
 }

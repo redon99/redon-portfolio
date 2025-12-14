@@ -5,10 +5,10 @@ import Typewriter from 'typewriter-effect'
 
 export default function Home() {
   return (
-    <main className='w-full h-[600px] relative flex items-center justify-center overflow-hidden'>
+    <div className='w-full flex-1 flex items-center justify-center relative overflow-hidden px-4 sm:px-6 lg:px-8'>
       <ParticlesBackground />
 
-      <h3 className='relative text-white text-xl drop-shadow-[0_0_15px_#11ce91]'>
+      <h3 className='relative text-white text-base sm:text-lg md:text-xl lg:text-2xl px-4 text-center drop-shadow-[0_0_15px_#11ce91]'>
         <Typewriter
           options={{
             strings: [
@@ -27,6 +27,6 @@ export default function Home() {
           }}
         />
       </h3>
-    </main>
+    </div>
   )
 }

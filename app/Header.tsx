@@ -1,7 +1,8 @@
 'use client'
 import Link from 'next/link'
-import { Sun } from 'lucide-react'
+import { Sun, Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
 
 const NAV_ITEMS = [
   { name: 'Home', href: '/' },
@@ -12,49 +13,183 @@ const NAV_ITEMS = [
 
 export const Header = () => {
   const pathname = usePathname()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [pathname])
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   return (
     <div className='w-full border-primary border-b'>
-      <header className='w-7xl py-4 mx-auto flex items-center justify-between'>
+      <header className='w-full max-w-7xl py-4 px-4 sm:px-6 lg:px-8 mx-auto flex items-center justify-between'>
         <Link
-          className='text-primary text-xl font-bold cursor-pointer hover:opacity-80 link-transition focus-ring'
+          className='text-primary text-lg sm:text-xl font-bold cursor-pointer hover:opacity-80 link-transition focus-ring'
           href='/'
         >
           Redon LUTOLLI
         </Link>
 
-        <ul className='flex gap-8 font-medium text-lg items-center'>
+        {/* Desktop Navigation */}
+        <nav className='hidden md:flex'>
+          <ul className='flex gap-6 lg:gap-8 font-medium text-base lg:text-lg items-center'>
+            <li>
+              <button
+                onClick={() => console.log('click')}
+                className='cursor-pointer focus-visible:ring-2 focus-ring'
+                aria-label='Toggle theme'
+              >
+                <Sun className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+              </button>
+            </li>
+
+            {NAV_ITEMS.map(item => {
+              const isActive = pathname === item.href
+              return (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className={`cursor-pointer group link-transition inline-block relative focus-ring ${
+                      isActive ? 'text-primary font-bold' : 'hover:text-primary'
+                    }`}
+                  >
+                    {item.name}
+                    <span className='link-underline' />
+                  </Link>
+                </li>
+              )
+            })}
+            <li>
+              <Link
+                href='/redonCV-2025.pdf'
+                className='button focus-ring link-transition text-sm lg:text-base px-3 lg:px-4 py-2'
+                download='Redon_Lutolli_CV.pdf'
+              >
+                Download CV
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <div className='flex items-center gap-4 md:hidden'>
           <button
             onClick={() => console.log('click')}
             className='cursor-pointer focus-visible:ring-2 focus-ring'
+            aria-label='Toggle theme'
           >
-            <Sun className='hover:text-primary link-transition focus-visible:outline-none' />
+            <Sun className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
           </button>
-
-          {NAV_ITEMS.map(item => {
-            const isActive = pathname === item.href
-            return (
-              <li key={item.name}>
-                <Link
-                  href={item.href}
-                  className={`cursor-pointer group link-transition inline-block relative focus-ring ${
-                    isActive ? 'text-primary font-bold' : 'hover:text-primary'
-                  }`}
-                >
-                  {item.name}
-                  <span className='link-underline' />
-                </Link>
-              </li>
-            )
-          })}
-          <Link
-            href='/redonCV-2025.pdf'
-            className='button focus-ring link-transition'
-            download='Redon_Lutolli_CV.pdf'
+          <button
+            onClick={toggleMenu}
+            className='cursor-pointer focus-visible:ring-2 focus-ring text-foreground hover:text-primary link-transition relative z-50'
+            aria-label='Toggle menu'
+            aria-expanded={isMenuOpen}
           >
-            Download CV
-          </Link>
-        </ul>
+            <div className='relative w-6 h-6'>
+              <X
+                className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
+                  isMenuOpen
+                    ? 'opacity-100 rotate-0 scale-100'
+                    : 'opacity-0 rotate-90 scale-0'
+                }`}
+              />
+              <Menu
+                className={`absolute inset-0 w-6 h-6 transition-all duration-300 ${
+                  isMenuOpen
+                    ? 'opacity-0 -rotate-90 scale-0'
+                    : 'opacity-100 rotate-0 scale-100'
+                }`}
+              />
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Navigation Overlay */}
+        <div
+          className={`fixed inset-0 bg-background/95 backdrop-blur-sm z-40 md:hidden transition-all duration-300 ${
+            isMenuOpen
+              ? 'opacity-100 visible'
+              : 'opacity-0 invisible pointer-events-none'
+          }`}
+          onClick={toggleMenu}
+        >
+          <nav
+            className={`absolute top-0 right-0 h-full w-64 sm:w-80 bg-background border-l border-primary shadow-lg transform transition-transform duration-300 ease-in-out ${
+              isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+            onClick={e => e.stopPropagation()}
+          >
+            <div className='flex flex-col h-full pt-20 px-6'>
+              <ul className='flex flex-col gap-6 font-medium text-lg'>
+                {NAV_ITEMS.map((item, index) => {
+                  const isActive = pathname === item.href
+                  return (
+                    <li
+                      key={item.name}
+                      className='transform transition-all duration-300'
+                      style={{
+                        animationDelay: isMenuOpen ? `${index * 50}ms` : '0ms',
+                        opacity: isMenuOpen ? 1 : 0,
+                        transform: isMenuOpen
+                          ? 'translateX(0)'
+                          : 'translateX(20px)',
+                      }}
+                    >
+                      <Link
+                        href={item.href}
+                        className={`cursor-pointer group link-transition inline-block relative focus-ring text-xl ${
+                          isActive
+                            ? 'text-primary font-bold'
+                            : 'hover:text-primary'
+                        }`}
+                        onClick={toggleMenu}
+                      >
+                        {item.name}
+                        <span className='link-underline' />
+                      </Link>
+                    </li>
+                  )
+                })}
+                <li
+                  className='mt-4 transform transition-all duration-300'
+                  style={{
+                    animationDelay: isMenuOpen ? `${NAV_ITEMS.length * 50}ms` : '0ms',
+                    opacity: isMenuOpen ? 1 : 0,
+                    transform: isMenuOpen
+                      ? 'translateX(0)'
+                      : 'translateX(20px)',
+                  }}
+                >
+                  <Link
+                    href='/redonCV-2025.pdf'
+                    className='button focus-ring link-transition inline-block px-6 py-3 text-base'
+                    download='Redon_Lutolli_CV.pdf'
+                    onClick={toggleMenu}
+                  >
+                    Download CV
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
       </header>
     </div>
   )

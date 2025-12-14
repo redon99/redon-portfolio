@@ -16,31 +16,31 @@ interface P {
 
 export const ProjectDetails = ({ project }: P) => {
   return (
-    <div className='ml-8'>
-      <p className='mt-2 mb-1'>- {project.description}</p>
-      <p>- Tech stack</p>
-      <ul>
+    <div className='ml-4 sm:ml-8 mt-2 pr-2 overflow-x-hidden'>
+      <p className='mt-2 mb-1 text-sm sm:text-base break-words'>- {project.description}</p>
+      <p className='text-sm sm:text-base'>- Tech stack</p>
+      <ul className='overflow-x-hidden'>
         {project.stack.map(tech => (
-          <li key={tech} className='text-sm ml-8'>
+          <li key={tech} className='text-xs sm:text-sm ml-4 sm:ml-8 break-words'>
             • {tech}
           </li>
         ))}
       </ul>
-      <p className='mt-2'>- Highlights</p>
-      <ul>
+      <p className='mt-2 text-sm sm:text-base'>- Highlights</p>
+      <ul className='overflow-x-hidden'>
         {project.highlights.map(highlight => (
-          <li key={highlight} className='text-sm ml-8'>
+          <li key={highlight} className='text-xs sm:text-sm ml-4 sm:ml-8 break-words'>
             • {highlight}
           </li>
         ))}
       </ul>
-      <p className='mt-2'>- Links</p>
-      <ul>
-        <li>
+      <p className='mt-2 text-sm sm:text-base'>- Links</p>
+      <ul className='overflow-x-hidden'>
+        <li className='flex flex-wrap gap-2 sm:gap-4'>
           {project.links.live && (
             <Link
               href={project.links.live}
-              className='hover:text-primary link-transition ml-4 focus-ring'
+              className='hover:text-primary link-transition ml-2 sm:ml-4 focus-ring text-sm sm:text-base'
               target='_blank'
             >
               [Live]
@@ -49,7 +49,7 @@ export const ProjectDetails = ({ project }: P) => {
           {project.links.github && (
             <Link
               href={project.links.github}
-              className='hover:text-primary link-transition ml-4 focus-ring'
+              className='hover:text-primary link-transition ml-2 sm:ml-4 focus-ring text-sm sm:text-base'
               target='_blank'
             >
               [Github]

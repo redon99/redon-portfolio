@@ -21,10 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={jetBrainMono.variable}>
-      <body className='antialiased'>
-        <main>
+      <body className='antialiased overflow-x-hidden'>
+        <main className='min-h-screen flex flex-col overflow-x-hidden'>
           <Header />
-          <div>{children}</div>
+          <div className='flex-1 flex flex-col overflow-x-hidden'>
+            {children}
+          </div>
           <Footer />
         </main>
       </body>
