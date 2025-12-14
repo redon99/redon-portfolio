@@ -23,9 +23,9 @@ function Index() {
   const [openProject, setOpenProject] = useState<string | null>(null)
 
   return (
-    <section className='max-w-5xl h-[600px] mx-auto overflow-y-auto'>
+    <section className='w-5xl h-[600px] mx-auto'>
       <motion.div variants={containerVariants} initial='hidden' animate='show'>
-        <h2 className='mb-6 mt-2'>My work so far 👷</h2>
+        <h2>My work so far 👷</h2>
         <motion.div variants={itemsVariants}>
           <TerminalQuery query='projects ls --short' />
         </motion.div>

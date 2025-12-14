@@ -1,4 +1,4 @@
-import { Facebook, GithubIcon, Linkedin, MapPin } from 'lucide-react'
+import { Facebook, GithubIcon, Linkedin, MapPin, MailIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -17,6 +17,11 @@ const SOCIAL_LINKS = [
     name: 'facebook',
     url: 'https://www.facebook.com/redonlu',
     icon: <Facebook />,
+  },
+  {
+    name: 'mail',
+    url: 'mailto:redon.lutolli@gmail.com',
+    icon: <MailIcon />,
   },
 ]
 

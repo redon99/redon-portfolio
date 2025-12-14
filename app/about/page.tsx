@@ -49,9 +49,9 @@ const itemsVariants = {
 
 function Index() {
   return (
-    <div className='w-5xl mx-auto h-[600px] py-4'>
+    <div className='w-5xl mx-auto h-[600px]'>
       <motion.div variants={containerVariants} initial='hidden' animate='show'>
-        <motion.div variants={itemsVariants}>
+        <motion.div variants={itemsVariants} className='pt-2'>
           <TerminalQuery query='whoami' />
           <p className='text-md font-light mb-10'>
             👋 Hi there! I'm Redon, a full-stack software engineer based on

@@ -49,7 +49,7 @@ export const Header = () => {
           })}
           <Link
             href='/redonCV-2025.pdf'
-            className='bg-primary text-background px-4 rounded-md hover:scale-105 link-transition focus-ring ring-offset-2'
+            className='button focus-ring link-transition'
             download='Redon_Lutolli_CV.pdf'
           >
             Download CV
