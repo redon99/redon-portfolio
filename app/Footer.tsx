@@ -71,7 +71,7 @@ export const Footer = () => {
               ))}
             </ul>
 
-            <p className='mt-4 sm:mt-6 opacity-50 text-center sm:text-left'>
+            <p className='mt-4 sm:mt-6 opacity-70 text-center sm:text-left'>
               made with /~.zsh
             </p>
           </div>

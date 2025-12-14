@@ -49,7 +49,7 @@ const itemsVariants = {
 
 function Index() {
   return (
-    <div className='w-full flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 overflow-x-hidden'>
+    <div className='w-full flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 sm:py-4 overflow-hidden'>
       <div className='w-full max-w-5xl mx-auto'>
         <motion.div
           variants={containerVariants}

@@ -1,11 +1,13 @@
 'use client'
 import { useEffect, useMemo, useState } from 'react'
 import Particles, { initParticlesEngine } from '@tsparticles/react'
-import { type Container, type ISourceOptions } from '@tsparticles/engine'
+import type { ISourceOptions } from '@tsparticles/engine'
 import { loadSlim } from '@tsparticles/slim'
+import { useTheme } from '../contexts/ThemeContext'
 
 export const ParticlesBackground = () => {
   const [init, setInit] = useState(false)
+  const { theme } = useTheme()
 
   useEffect(() => {
     initParticlesEngine(async engine => {
@@ -14,10 +16,6 @@ export const ParticlesBackground = () => {
       setInit(true)
     })
   }, [])
-
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container)
-  }
 
   const options: ISourceOptions = useMemo(
     () => ({
@@ -40,7 +38,6 @@ export const ParticlesBackground = () => {
             enable: true,
             mode: 'push',
           },
-          resize: true,
         },
         modes: {
           grab: {
@@ -62,7 +59,7 @@ export const ParticlesBackground = () => {
           color: '#11ce91',
           distance: 100,
           enable: true,
-          opacity: 0.5,
+          opacity: theme === 'light' ? 0.3 : 0.5,
           width: 1,
         },
         move: {
@@ -76,7 +73,7 @@ export const ParticlesBackground = () => {
           },
         },
         opacity: {
-          value: 0.5,
+          value: theme === 'light' ? 0.4 : 0.5,
         },
         shape: {
           type: 'circle',
@@ -87,14 +84,13 @@ export const ParticlesBackground = () => {
       },
       detectRetina: true,
     }),
-    []
+    [theme]
   )
 
   if (init) {
     return (
       <Particles
         id='tsparticles'
-        particlesLoaded={particlesLoaded}
         options={options}
         className='absolute inset-0'
         style={{

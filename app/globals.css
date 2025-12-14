@@ -1,9 +1,24 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
   --primary: #11ce91;
+  --error: #ef4444;
+}
+
+:root.light {
+  --background: #fafafa;
+  --foreground: #1a1a1a;
+  --foreground-muted: #4a4a4a;
+  --border-color: #e5e5e5;
+  --overlay: rgba(255, 255, 255, 0.95);
+}
+
+:root.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --foreground-muted: #b0b0b0;
+  --border-color: #2a2a2a;
+  --overlay: rgba(10, 10, 10, 0.95);
 }
 
 @theme inline {
@@ -14,18 +29,12 @@
   --color-primary: var(--primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-jetbrains-mono);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
@@ -54,7 +63,17 @@ h2 {
 }
 
 .form-input {
-  @apply w-full bg-transparent border border-foreground/20 px-3 py-2 text-sm placeholder:opacity-40 hover:border-foreground/40 focus:border-primary/60;
+  @apply w-full bg-transparent border px-3 py-2 text-sm placeholder:opacity-40 transition-colors;
+  border-color: var(--border-color);
+}
+
+.form-input:hover {
+  border-color: var(--foreground-muted);
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  outline: none;
 }
 
 .button {
@@ -74,4 +93,20 @@ h2 {
 
 .caret-blink {
   animation: caret 1s steps(1) infinite;
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.border-error {
+  border-color: var(--error) !important;
+}
+
+.light .opacity-50 {
+  opacity: 0.6;
+}
+
+.light .opacity-70 {
+  opacity: 0.8;
 }

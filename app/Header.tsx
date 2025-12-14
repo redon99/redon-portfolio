@@ -1,8 +1,9 @@
 'use client'
 import Link from 'next/link'
-import { Sun, Menu, X } from 'lucide-react'
+import { Sun, Moon, Menu, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, startTransition } from 'react'
+import { useTheme } from './contexts/ThemeContext'
 
 const NAV_ITEMS = [
   { name: 'Home', href: '/' },
@@ -14,10 +15,13 @@ const NAV_ITEMS = [
 export const Header = () => {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
 
   // Close menu when route changes
   useEffect(() => {
-    setIsMenuOpen(false)
+    startTransition(() => {
+      setIsMenuOpen(false)
+    })
   }, [pathname])
 
   // Prevent body scroll when menu is open
@@ -49,13 +53,17 @@ export const Header = () => {
         {/* Desktop Navigation */}
         <nav className='hidden md:flex'>
           <ul className='flex gap-6 lg:gap-8 font-medium text-base lg:text-lg items-center'>
-            <li>
+            <li className='flex items-center'>
               <button
-                onClick={() => console.log('click')}
-                className='cursor-pointer focus-visible:ring-2 focus-ring'
+                onClick={toggleTheme}
+                className='cursor-pointer focus-visible:ring-2 focus-ring flex items-center justify-center'
                 aria-label='Toggle theme'
               >
-                <Sun className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+                {theme === 'light' ? (
+                  <Moon className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+                ) : (
+                  <Sun className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+                )}
               </button>
             </li>
 
@@ -90,11 +98,15 @@ export const Header = () => {
         {/* Mobile Menu Button */}
         <div className='flex items-center gap-4 md:hidden'>
           <button
-            onClick={() => console.log('click')}
+            onClick={toggleTheme}
             className='cursor-pointer focus-visible:ring-2 focus-ring'
             aria-label='Toggle theme'
           >
-            <Sun className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+            {theme === 'light' ? (
+              <Moon className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+            ) : (
+              <Sun className='hover:text-primary link-transition focus-visible:outline-none w-5 h-5' />
+            )}
           </button>
           <button
             onClick={toggleMenu}
@@ -123,11 +135,12 @@ export const Header = () => {
 
         {/* Mobile Navigation Overlay */}
         <div
-          className={`fixed inset-0 bg-background/95 backdrop-blur-sm z-40 md:hidden transition-all duration-300 ${
+          className={`fixed inset-0 backdrop-blur-sm z-40 md:hidden transition-all duration-300 ${
             isMenuOpen
               ? 'opacity-100 visible'
               : 'opacity-0 invisible pointer-events-none'
           }`}
+          style={{ backgroundColor: 'var(--overlay)' }}
           onClick={toggleMenu}
         >
           <nav
@@ -170,7 +183,9 @@ export const Header = () => {
                 <li
                   className='mt-4 transform transition-all duration-300'
                   style={{
-                    animationDelay: isMenuOpen ? `${NAV_ITEMS.length * 50}ms` : '0ms',
+                    animationDelay: isMenuOpen
+                      ? `${NAV_ITEMS.length * 50}ms`
+                      : '0ms',
                     opacity: isMenuOpen ? 1 : 0,
                     transform: isMenuOpen
                       ? 'translateX(0)'
@@ -179,7 +194,7 @@ export const Header = () => {
                 >
                   <Link
                     href='/redonCV-2025.pdf'
-                    className='button focus-ring link-transition inline-block px-6 py-3 text-base'
+                    className='button focus-ring link-transition inline-block px-6 py-3 text-base hover:scale-105 active:scale-95'
                     download='Redon_Lutolli_CV.pdf'
                     onClick={toggleMenu}
                   >

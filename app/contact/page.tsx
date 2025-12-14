@@ -82,7 +82,7 @@ function Index() {
               placeholder='Your name'
             />
             {errors.name && (
-              <p className='mt-1 text-xs text-red-500'>{errors.name}</p>
+              <p className='mt-1 text-xs text-error'>{errors.name}</p>
             )}
           </FormField>
           <FormField label='email'>
@@ -91,7 +91,7 @@ function Index() {
               type='email'
               required
               className={`form-input focus-ring text-sm sm:text-base ${
-                errors.name ? 'border-red-500/60' : ''
+                errors.name ? 'border-error' : ''
               }`}
               placeholder='Your email'
             />
@@ -104,7 +104,7 @@ function Index() {
               placeholder='Write something...'
             />
             {errors.message && (
-              <p className='mt-1 text-xs text-red-500'>{errors.message}</p>
+              <p className='mt-1 text-xs text-error'>{errors.message}</p>
             )}
           </FormField>
 
@@ -122,7 +122,7 @@ function Index() {
           )}
 
           {status === 'error' && (
-            <p className='text-xs sm:text-sm text-red-500'>
+            <p className='text-xs sm:text-sm text-error'>
               Something went wrong. Try again please!
             </p>
           )}

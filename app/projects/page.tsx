@@ -37,7 +37,7 @@ function Index() {
           </p>
         </motion.div>
 
-        <ul className='ml-4 sm:ml-8 my-4 space-y-2 overflow-x-hidden'>
+        <ul className='ml-4 sm:ml-8 my-4 space-y-2 overflow-hidden'>
           {PROJECTS.map(project => (
             <motion.li
               key={project.id}

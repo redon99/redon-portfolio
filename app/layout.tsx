@@ -3,6 +3,7 @@ import { JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { Header } from './Header'
 import { Footer } from './Footer'
+import { ThemeProvider } from './contexts/ThemeContext'
 
 const jetBrainMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
@@ -20,15 +21,30 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' className={jetBrainMono.variable}>
+    <html lang='en' className={jetBrainMono.variable} suppressHydrationWarning>
       <body className='antialiased overflow-x-hidden'>
-        <main className='min-h-screen flex flex-col overflow-x-hidden'>
-          <Header />
-          <div className='flex-1 flex flex-col overflow-x-hidden'>
-            {children}
-          </div>
-          <Footer />
-        </main>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  const theme = localStorage.getItem('theme') || 
+                    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                  document.documentElement.classList.add(theme);
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+        <ThemeProvider>
+          <main className='min-h-screen flex flex-col overflow-x-hidden'>
+            <Header />
+            <div className='flex-1 flex flex-col overflow-x-hidden'>
+              {children}
+            </div>
+            <Footer />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   )
