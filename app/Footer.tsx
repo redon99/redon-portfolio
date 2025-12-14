@@ -38,7 +38,7 @@ export const Footer = () => {
               height={48}
               className='rounded-full shrink-0 object-cover'
             />
-            <div className='text-center sm:text-left'>
+            <div className='sm:text-left'>
               <h4 className='text-primary font-bold text-base sm:text-lg'>
                 Redon Lutolli
               </h4>
